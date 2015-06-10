@@ -11,8 +11,8 @@ function Twitterus(mount) {
     this.currentSection = data.sections[0].id;
 
     makeHeader(this);
-    makeFooter(this);
     makeSwapper(this);
+    makeFooter(this);
 }
 
 // Extend the prototype
@@ -25,7 +25,7 @@ Twitterus.prototype.onMount = function onMount (parent, id) {
    this.emit('changeSection', {from: null, to: this.currentSection});
 };
 
-// Overwrite the onReceive method to intercept events flowing within 
+// Overwrite the onReceive method to intercept events flowing within
 // the scene graph
 Twitterus.prototype.onReceive = function onReceive (event, payload) {
 
@@ -85,7 +85,7 @@ function makeFooter (node) {
         .setSizeMode('default', 'absolute')
         .setAbsoluteSize(null, 100)
         .setMountPoint(0, 1)
-        .setAlign(0, 1)
+        .setAlign( 0, 1)
         .addChild(new Footer());
 }
 

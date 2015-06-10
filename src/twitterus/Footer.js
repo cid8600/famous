@@ -1,6 +1,11 @@
+/**
+* Footer.js
+*/
+
 var data = require('./Data');
 var NavButton = require('./NavButton');
 var Node = require('famous/core/Node');
+var DOMElement = require('famous/dom-renderables/DOMElement');
 
 // the number of sections in the app
 var numSections = data.sections.length;
@@ -9,6 +14,11 @@ var numSections = data.sections.length;
 function Footer () {
     // subclass Node
     Node.call(this);
+
+    this.el = new DOMElement(this, {
+        classes: ['footer']
+    });
+
 
     // object to store the buttons
     this.buttons = {};

@@ -10,7 +10,7 @@ function Swapper () {
     // subclass Node
     Node.call(this);
 
-    // create a new dom element 
+    // create a new dom element
     this.el = new DOMElement(this);
 
     // store the current section
@@ -27,13 +27,13 @@ Swapper.prototype.changeSection = function changeSection (to) {
     // Swap out any section that isn't the new section
     // and swap in the new section
     data.sections.forEach(function (section) {
-        if (section.id === to) 
+        if (section.id === to)
             // 500 millisecond transition
             this.sections[section.id].align.set(0, 0, 0, {
                 duration: 500
             });
         else
-            // 1 in x will put the top left corner of the 
+            // 1 in x will put the top left corner of the
             // section directly off the screen
             this.sections[section.id].align.set(1, 0, 0, {
                 duration: 500
@@ -57,7 +57,7 @@ function createSections () {
         result[section.id] = {
             align: new Align(child),
             section: child.addChild(new Section(i))
-        }
+        };
     }.bind(this));
 
     return result;

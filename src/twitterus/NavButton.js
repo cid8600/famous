@@ -58,6 +58,6 @@ function makeEl (node) {
         },
         classes: ['navigation']
     });
-};
+}
 
 module.exports = NavButton;
