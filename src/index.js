@@ -1,4 +1,3 @@
-
 var FamousEngine = require('famous/core/FamousEngine');
 
 FamousEngine.init();

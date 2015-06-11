@@ -102,6 +102,12 @@ function _bindEvents() {
         if (e.keyCode === 39) this.root.emit('pageChange', {direction: 1, amount: 1});
         if (e.keyCode === 37) this.root.emit('pageChange', {direction: -1, amount: 1});
     }.bind(this));
+
+    // for ie 10
+    window.addEventListener('click', function(e) {
+        if (e.srcElement.innerText === '<') this.root.emit('pageChange', {direction: -1, amount: 1});
+        if (e.srcElement.innerText === '>') this.root.emit('pageChange', {direction: 1, amount: 1});
+    }.bind(this));
 }
 
 module.exports = Carousel;

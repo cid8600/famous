@@ -19,6 +19,7 @@ function Arrow(node, options) {
 
   this.gestures = new GestureHandler(node);
   this.gestures.on('tap', emitPageChange);
+  this.gestures.on('click', emitPageChange);
 }
 
 module.exports = Arrow;
