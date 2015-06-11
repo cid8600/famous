@@ -1,26 +1,47 @@
 // Holds the data for the application
-var data = {
+var data = {};
 
-    sections: [{
-        id: 'Home',
-        tweetNumber: 50
+data.sections = [{
+        id: 'Hommie',
+        tweetNumber: 30
     }, {
         id: 'Discover',
-        tweetNumber: 50
+        tweetNumber: 30
     }, {
         id: 'Connect',
-        tweetNumber: 50
+        tweetNumber: 30
     }, {
         id: 'Me',
-        tweetNumber: 25
-    }],
+        tweetNumber: 30
+    }];
 
-    usernames: ['@LouieBlooRaspberry','@PonchoPunch','@SirIsaacLime','@StrawberryShortKook','@AlexandertheGrape', '@LittleOrphanOrange'],
-    begin: ['Walk towards ', 'Jump on ' ,'Sing to ', 'Dance with ', 'Stare down ', 'Pick up ', 'Hold hands with ', 'Walk around ', 'Shake hands with ', 'Talk to ', 'Point at ', 'Read to ', 'High five ', 'Wave to ' ],
-    middle: ['a duck ', 'some fish ', 'a zebra ', 'nine honey badgers ', 'an old gorilla ', 'a ham sandwich ', 'a peanut ', 'Nicolas Cage ', 'a sock ', 'a pillow ', '12 fish ','a potato ', 'your neighbor ', 'a snail '],
-    end: ['quickly','and don\'t look back','without shoes', 'and clap your hands', 'and pat your belly', 'and do a jig', 'tomorrow', 'while eating ice cream', 'in the dark', 'at the park', 'with a friend', 'down by the bay', 'in the car', 'and yell'],
-    hashtags: ['#harrystyles', '#live', '#boredom', '#mylife', '#hiphop', '#texas', '#november', '#scary', '#best',' #snowman', '#shuffle', '#squats', '#selfie' ]
-
-};
+$.ajax({
+    url: "http://localhost:8080/stream",
+    type: "GET",
+})
+.success(function(ret, textStatus, jqXHR) {
+    var dataObj = ret.data.states;
+    for (var key in dataObj) {
+        if (dataObj[key].content.authorId) {
+            data.usernames.push(dataObj[key].content.authorId);
+        }
+        if (dataObj[key].content.bodyHtml) {
+            data.begin.push(dataObj[key].content.bodyHtml);
+            data.end.push(dataObj[key].content.bodyHtml);
+            data.hashtags.push('#sunset');
+        }
+    }
+})
+.done(function(data, textStatus, jqXHR) {
+    console.log(data)
+})
+.fail(function(jqXHR, textStatus, errorThrown) {
+    console.log("HTTP Request Failed");
+})
+.always(function() {
+    /* ... */
+});
 
 module.exports = data;
+
+// Stream (GET https://sales.stream1.fyre.co/v3.1/collection/118057680/0/)
